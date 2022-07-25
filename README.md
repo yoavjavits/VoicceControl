@@ -4,4 +4,4 @@
 
 ## Development Process:
 
-![project-2022-07-25_06-07_AM](https://user-images.githubusercontent.com/49749622/180752244-cb36983f-8bc4-48ab-a0c4-e8e511360a30.jpg)
+![Dissertation-Writing-Services-Workflow-](https://user-images.githubusercontent.com/49749622/180760080-1d5287d8-930b-410f-87d7-09b4b2661c68.jpg)
