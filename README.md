@@ -1,2 +1,2 @@
-# VoicceControl
+# VoiceControl
 IoT Project - Voice Control
