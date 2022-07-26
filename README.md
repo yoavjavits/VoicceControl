@@ -1,5 +1,5 @@
 # VoiceControl
-
+## Solve your rubik's cube with your voice commands!
 ![image](https://user-images.githubusercontent.com/49749622/180736810-9685d6ce-c5cc-4ec8-86f1-adaa528ee135.png)
 
 ## List Of Content:
@@ -13,7 +13,10 @@ Code for ArduinoUno, which controls the 6th stepper motor according to Arduino M
 Code for ESP Mini controller, which receives data from application using firebase, and send it with URAT to ESP32, and recieves data from ESP32 according to voice recognition commands and send it to firebase.
 
 ### Neural_Networks
-Code for creating neural networks for the wake word 'go' and for the command words - left, right, backward, forward, up, down. (Using speech recognition data set of google AI(.
+Code for creating neural networks for the wake word 'go' and for the command words - left, right, backward, forward, up, down. (Using speech recognition data set of google AI).
+
+### Project Documentation
+Word and PDF files for the documentation of the project.
 
 ### RubiksCubeFirmware_Arduino_Mega
 Software code for Arduino Mega which controls the robot movmements; command are sent to Arduino Mega using UART from ESP32, and he handles them accordingly.
