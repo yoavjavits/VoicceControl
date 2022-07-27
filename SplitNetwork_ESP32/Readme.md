@@ -20,26 +20,6 @@ We'll need to build three components:
 We'll wire these together to build our complete system.
 
 ---
-
-## Getting Started
-
-We're going to be using some hardware for our project - most of these components can be readily sourced from Amazon, eBay and Adafruit. You may also have local stockists in your own country who can supply the components.
-
-We will need:
-
-### An ESP32 dev kit
-
-These are readily available from a number of suppliers include [Adafruit](https://www.adafruit.com/product/4693)
-
-![ESP32 Dev Kit](https://blog.cmgresearch.com/assets/marvin/esp32.jpg)
-
-A good environment for developing for the ESP32 is [Platform.io](https://platformio.org/) and [Visual Studio Code](https://code.visualstudio.com/).
-
-### A microphone break out board
-
-I recommend using an I2S MEMS microphone board. These are very low noise microphones that can be connected directly to the ESP32 using a digital interface and require only a few wires. A good choice is either the INMP441 microphone (available from Amazon or eBay) or the ICS-43434 (available from [Tindie](https://www.tindie.com/products/21519/)).
-
-![MEMS Microphone Board](https://blog.cmgresearch.com/assets/marvin/mems.jpg)
 ## Wake Word Detection
 
 Let's start off with the Wake word detection. We need to create something that will tell use when a "wake" word is heard by the system. This will need to run on our embedded devices - an ideal option for this is to use TensorFlow and TensorFlow Lite.
@@ -164,12 +144,12 @@ That's our training data prepared, let's have a look at how we train our model u
 
 In the `model` folder you'll find another Jupyter notebook `Train Model.ipynb`. This takes the training, test and validation data that we generated in the previous step.
 
-For our system we only really care about detecting the word Marvin so we'll modify our Y labels so that it is a 1 for Marvin and 0 for everything else.
+For our system we only really care about detecting the word Go so we'll modify our Y labels so that it is a 1 for Go and 0 for everything else.
 
 ```python
-Y_train = [1 if y == words.index('marvin') else 0 for y in Y_train_cats]
-Y_validate = [1 if y == words.index('marvin') else 0 for y in Y_validate_cats]
-Y_test = [1 if y == words.index('marvin') else 0 for y in Y_test_cats]
+Y_train = [1 if y == words.index('go') else 0 for y in Y_train_cats]
+Y_validate = [1 if y == words.index('go') else 0 for y in Y_validate_cats]
+Y_test = [1 if y == words.index('go') else 0 for y in Y_test_cats]
 ```
 
 We feed this raw data into TensorFlow datasets - we set up our training data repeat forever, randomly shuffle, and to come out in batches.
@@ -245,7 +225,7 @@ If we look at the confusion matrix using the high threshold (0.9) for the true c
 |        | Predicted Noise | Predicted Marvin |
 | ------ | --------------- | ---------------- |
 | Noise  | 13980           | 63               |
-| Marvin | 1616            | 11054            |
+|   Go   | 1616            | 11054            |
 
 This is ideal for our use case as we don't want the device waking up randomly.
 
@@ -266,14 +246,6 @@ xxd -i converted_model.tflite > model_data.cc
 ---
 
 ## Wiring it all up
-
-So that's our building blocks completed. We have something that will detect a wake word and we have something that will work out what the user's intention was.
-
-Let's have a look at how this is all wired up on ESP32 side of things
-
-I've created a set of libraries for the main components of the project.
-
-![ESP32 Libraries](https://blog.cmgresearch.com/assets/marvin/libraries.png)
 
 The `tfmicro` library contains the code from TensorFlow Lite and includes everything needed to run a TensorFlow Lite mode.
 
